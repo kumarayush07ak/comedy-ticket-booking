@@ -31,4 +31,16 @@ jobs:
 
       - name: Run backend tests
         working-directory: backend
+        env:
+          DATABASE_URL: postgresql+psycopg2://postgres:postgres@localhost:5432/comedy_ticket
+          REDIS_URL: redis://localhost:6379/0
+          JWT_SECRET_KEY: ci-test-secret-key
+          CORS_ORIGINS: http://localhost:5173
+          SMTP_HOST: localhost
+          SMTP_PORT: 587
+          SMTP_USERNAME: ci-test@example.com
+          SMTP_PASSWORD: ci-test-password
+          SMTP_FROM_EMAIL: ci-test@example.com
+          FRONTEND_BASE_URL: http://localhost:5173
+          EMAIL_VERIFICATION_EXPIRE_MINUTES: 30
         run: pytest -v
